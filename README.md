@@ -17,3 +17,5 @@ golang lua robot
 |addEvent(key string)| key按键| 按键监听
 |move(x,y int)| x,y坐标|鼠标移动到指定坐标
 |eventSleep(x int)|x 单位ms|每次操作默认睡眠时间
+|dragSmooth(x,y int)| x,y 坐标|点击拖动鼠标
+|scroll(x,y int)|x,y 坐标|鼠标滚动

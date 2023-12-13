@@ -32,6 +32,8 @@ func doLua() {
 	L.SetGlobal("move", L.NewFunction(move))
 	L.SetGlobal("addEvent", L.NewFunction(addEvent))
 	L.SetGlobal("eventSleep", L.NewFunction(eventSleep))
+	L.SetGlobal("dragSmooth", L.NewFunction(dragSmooth))
+	L.SetGlobal("scroll", L.NewFunction(scroll))
 
 	err := L.DoFile("script.lua")
 	if err != nil {
@@ -172,6 +174,24 @@ func keyTaps(L *lua.LState) int {
 		}
 	})
 	robotgo.KeyTap(key, keys...)
+	return 0
+}
+
+//点击移动
+func dragSmooth(L *lua.LState) int {
+	eventSleeps()
+	x := L.ToInt(1)
+	y := L.ToInt(2)
+	robotgo.DragSmooth(x, y)
+	return 0
+}
+
+//滚动鼠标滚轮
+func scroll(L *lua.LState) int {
+	eventSleeps()
+	x := L.ToInt(1)
+	y := L.ToInt(2)
+	robotgo.Scroll(x, y)
 	return 0
 }
 

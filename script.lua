@@ -1,8 +1,20 @@
+local dic = {}
+math.randomseed(os.time())
 
-print(getRgb(1627,291))
+i = 1
+for line in io.lines("dic-zh.txt") do
+    dic[i] = line
+    i = i + 1
+end
+io.close()
 
-if (hasRgb(1627,291,"ebebeb",5)) then
-    print("获取颜色ebebeb成功")
-else
-    print("获取颜色失败")
+
+eventSleep(1000)
+for _ = 0, 10, 1 do
+    click(269, 149)
+    keyTaps({ "ctrl", "a" })
+    keyTap("del")
+    input(dic[math.random(i)])
+    keyTap("enter")
+    sleep(5)
 end
